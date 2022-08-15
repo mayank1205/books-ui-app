@@ -25,10 +25,12 @@ export class BookListComponent implements OnInit {
   books:Book[] | undefined;
   booksCount = 0;
   currentBookId: number = 0;
-  editBook: Subject<number> | undefined;
+  editBook!: Subject<number> ;
+  bookDetails!: Subject<number> ;
   ngOnInit() {
     this.getBooks();
     this.editBook = new BehaviorSubject(0);
+    this.bookDetails = new BehaviorSubject(0);
   }
 
   callGetBooks() {
@@ -44,13 +46,17 @@ export class BookListComponent implements OnInit {
     });
   }
 
-  setCurrentBook(id: number) {
+  setCurrentBook(id: number, func: string) {
     console.log(id);
     if(id) {
       console.log(id);
       this.currentBookId = id;
-      if(this.editBook){
+      console.log(this.editBook);
+      if(func === 'edit'){
         this.editBook.next(this.currentBookId);
+      }
+      if(func === 'details'){
+        this.bookDetails.next(this.currentBookId);
       }
     }
   }

@@ -1,19 +1,22 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AddBookComponent } from './add-book/add-book.component';
+import { BookDetailsComponent } from './book-details/book-details.component';
 import { BookListComponent } from './book-list/book-list.component';
+import { EditBookComponent } from './edit-book/edit-book.component';
 
 const routes: Routes = [{
   path: '',
   component: BookListComponent,
 },{
   path: 'add',
-  component: BookListComponent
+  component: AddBookComponent
 },{
   path: 'edit',
-  component: BookListComponent,
+  component: EditBookComponent,
 },{
   path: 'details',
-  component: BookListComponent,
+  component: BookDetailsComponent,
 }];
 
 @NgModule({
