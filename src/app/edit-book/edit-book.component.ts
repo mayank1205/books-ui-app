@@ -36,7 +36,7 @@ export class EditBookComponent implements OnInit {
         let book = res.data;
         console.log(book);
         this.form = new FormGroup({
-          title: new FormControl(book.name),
+          title: new FormControl(book.title),
           author: new FormControl(book.author),
           language: new FormControl(book.language),
           year: new FormControl(book.year)
