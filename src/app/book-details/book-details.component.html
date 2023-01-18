@@ -1,14 +1,19 @@
 <div class="card" style="width: 18rem; min-width: 465px;">
     <div class="card-body">
-      <h5 class="card-title">{{book?.title}}</h5>
+      <h2 class="card-title" style="text-align: center;">{{book?.title}}</h2>
       <p class="card-text">
-        Author: {{book?.author}}
-        Pages: {{book?.pages}}
-        Language: {{book?.Language}}
-        Year: {{book?.year}}
-        Country: {{book?.country}}
+        <span class="details-label">Author:</span> {{book?.author}}
       </p>
-      <a href={{book?.link}} target="_blank" class="btn btn-primary">More details . . . </a>
+      <p class="card-text">
+        <span class="details-label">Description:</span> {{book?.description}}
+      </p>
+      <p class="card-text">
+        <span class="details-label">Language:</span> {{book?.language}}
+      </p>
+      <p class="card-text">
+        <span class="details-label">Year:</span> {{book?.year}}
+      </p>
+      <!-- <a href={{book?.link}} target="_blank" class="btn btn-primary">More details . . . </a> -->
     </div>
   </div>
   

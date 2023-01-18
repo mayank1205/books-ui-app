@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { BooksService } from 'src/app/services/books.service';
 import { Subject } from 'rxjs';
 
@@ -13,6 +13,8 @@ export class BookDetailsComponent implements OnInit {
   bookId!: number;
   @Input() bookDetails!: Subject<number>;
   book: any;
+  @Output() getListChange = new EventEmitter(false);
+
   constructor(private booksService: BooksService) { }
 
   ngOnInit() {
@@ -22,15 +24,36 @@ export class BookDetailsComponent implements OnInit {
     }
     console.log("this is the book details ", this.bookId);
     this.booksService.getBook(this.bookId).subscribe((res: any) => {
+      console.log(res.data);
       this.book = res.data;
       console.log(this.book)
     });
+    console.log(this.bookDetails)
+    console.log('coming here?');
    if(this.bookDetails) {
       this.bookDetails.subscribe(id => {
         if(!id) {
           return;
         }
         console.log(id)
+        this.getListChange.emit(true);
+        this.booksService.getBook(id).subscribe((res: any) => {
+          console.log(res)
+          this.book = res.data;
+          console.log("this is the book details ", this.book);
+        })
+      })
+  }
+  }
+  ngOnChanges() {
+    console.log('on change');
+    if(this.bookDetails) {
+      this.bookDetails.subscribe(id => {
+        if(!id) {
+          return;
+        }
+        console.log(id)
+        this.getListChange.emit(true);
         this.booksService.getBook(id).subscribe((res: any) => {
           console.log(res)
           this.book = res.data;

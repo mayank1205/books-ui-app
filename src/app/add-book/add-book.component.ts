@@ -18,12 +18,14 @@ export class AddBookComponent implements OnInit {
     this.form = new FormGroup({
       title: new FormControl(''),
       author: new FormControl(''),
+      description: new FormControl(''),
       language: new FormControl(''),
       year: new FormControl('')
    });
   }
 
   submit() {
+    console.log('came here?');
     this.bookService.addBook(this.form.value).subscribe((data: any) => {
       if (data.success) {
         console.log('came here?');

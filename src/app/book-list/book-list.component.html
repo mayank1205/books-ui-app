@@ -92,7 +92,7 @@
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-body">
-            <app-book-details [bookId] = "currentBookId" [bookDetails]="bookDetails"></app-book-details>
+            <app-book-details [bookId] = "currentBookId" [bookDetails]="bookDetails" (getListChange)='callGetBooks()'></app-book-details>
           </div>
         </div>
       </div>

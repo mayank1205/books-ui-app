@@ -24,6 +24,7 @@ export class EditBookComponent implements OnInit {
     this.form = new FormGroup({
       title: new FormControl(''),
       author: new FormControl(''),
+      description: new FormControl(''),
       language: new FormControl(''),
       year: new FormControl('')
    });
@@ -38,6 +39,7 @@ export class EditBookComponent implements OnInit {
         this.form = new FormGroup({
           title: new FormControl(book.title),
           author: new FormControl(book.author),
+          description: new FormControl(book.description),
           language: new FormControl(book.language),
           year: new FormControl(book.year)
        });
