@@ -1,15 +1,30 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BooksService {
-  constructor(private http: HttpClient) {}
+  token = localStorage.getItem('token')
+  constructor(private http: HttpClient) {
+    
+  }
+
+  getHeaders(){
+    let headers_object = new HttpHeaders({
+      'Content-Type': 'application/json',
+       'Authorization': "Bearer "+this.token
+    });
+
+    return {
+      headers: headers_object
+    };
+  }
 
   getBooks() {
-    return this.http.get(`${environment.API_URL}/books`);
+    
+    return this.http.get(`${environment.API_URL}/books`, this.getHeaders());
   }
 
   addBook(book: any) {
